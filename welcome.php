@@ -31,12 +31,10 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <br>
 
             <?php
-				session_start();
-				$ID= $_SESSION["ID"];
+				$ID= $_SESSION["id"];
 				$username = $_SESSION["username"];
             ?>
             
-        <img src="upload/<?php echo $row['File'] ?>" height="150" width="150" style="border-radius:50%;display:block;margin-left:auto;margin-right:auto;" />
 		<p class="hint-text"><br><b>Welcome </b><?php echo $_SESSION["username"] ?></p>
         <div class="text-center">Want to Leave the Page? <br><a href="logout.php">Logout</a></div>
     </form>

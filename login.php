@@ -47,12 +47,12 @@
             });
             if (count($result) > 0) {
             //        if details are correct save to session
-                session_start();
-                foreach ($result as $item)
+                // session_start();
+
                     $_SESSION["loggedin"] = true;
-                    $_SESSION["username"] = $username; 
-                    $_SESSION['id'] = $item['id'];
-                    $_SESSION['name'] = $item['username'];
+                    $_SESSION["username"] = $username;
+                    foreach ($result as $key) 
+                        $_SESSION['id'] = $key['id'];
                 header("Location :welcome.php");
             } else{
                 // Password is not valid, display a generic error message
