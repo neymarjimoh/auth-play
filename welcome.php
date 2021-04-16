@@ -15,7 +15,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
-<title>Welcome to Finance Portal</title>
+<title>Welcome ..</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="assests/css/style.css">
@@ -34,12 +34,11 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 				session_start();
 				include 'database.php';
 				$ID= $_SESSION["ID"];
-				$sql=mysqli_query($conn,"SELECT * FROM register where ID='$ID' ");
-				$row  = mysqli_fetch_array($sql);
+				$username = $_SESSION["username"];
             ?>
             
         <img src="upload/<?php echo $row['File'] ?>" height="150" width="150" style="border-radius:50%;display:block;margin-left:auto;margin-right:auto;" />
-		<p class="hint-text"><br><b>Welcome </b><?php echo $_SESSION["First_Name"] ?> <?php echo $_SESSION["Last_Name"] ?></p>
+		<p class="hint-text"><br><b>Welcome </b><?php echo $_SESSION["username"] ?></p>
         <div class="text-center">Want to Leave the Page? <br><a href="logout.php">Logout</a></div>
     </form>
 	
