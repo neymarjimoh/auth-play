@@ -1,15 +1,13 @@
 <?php
+$password_err = $new_password_err = "";
 if (isset($_POST['update'])) {
-    $error = [];
 
     if (empty($_POST['password'])) {
-        array_push($error, "How do you login without a password for Christ sake");
+        $password_err = "Please enter your current password";
     }
 
-    $id = $_POST['id'];
-    $name = $_POST['name'];
-    $email = $_POST['email'];
     $password = $_POST['password'];
+    $new_password = $_POST['new_password'];
 
 //check if errors exist
     if (count($error) === 0) {
@@ -19,8 +17,7 @@ if (isset($_POST['update'])) {
 
         $detailsArray = [
             'id' => $id,
-            'name' => $name,
-            'email' => $email,
+            'username' => $usename,
             'password' => $password,
         ];
 
@@ -44,14 +41,13 @@ if (isset($_POST['update'])) {
             //re-populate file with updated details
             file_put_contents("database.json", json_encode($NewArray));
 
-            header("Location:index.php?status=1");
+            header("Location:welcome.php");
 
         } else {
             echo "This data dose not exist in the database";
         }
     }else{
-        echo "Why do you want to use empty for password,Explain?
-        <a href='index.php'>Go back joor</a>";
+        echo "Check details";
     }
 
 }
@@ -75,20 +71,30 @@ if (isset($_POST['update'])) {
 </head>
 <body>
 <div class="signup-form">
-    <form action="home.php" method="post" enctype="multipart/form-data">
-		<h2>Welcome</h2>
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+		<h2>Update your password</h2>
         <br>
 
             <?php
 				session_start();
-				include 'database.php';
-				$ID= $_SESSION["ID"];
-				$sql=mysqli_query($conn,"SELECT * FROM register where ID='$ID' ");
-				$row  = mysqli_fetch_array($sql);
+                $ID= $_SESSION["ID"];
+				$username = $_SESSION["username"];
             ?>
-            
-        <img src="upload/<?php echo $row['File'] ?>" height="150" width="150" style="border-radius:50%;display:block;margin-left:auto;margin-right:auto;" />
-		<p class="hint-text"><br><b>Welcome </b><?php echo $_SESSION["First_Name"] ?> <?php echo $_SESSION["Last_Name"] ?></p>
+        <div class="form-group">
+                <label>Password</label>
+                <input type="password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $password; ?>">
+                <span class="invalid-feedback"><?php echo $password_err; ?></span>
+            </div>
+            <div class="form-group">
+                <label>New Password</label>
+                <input type="password" name="new_password" class="form-control <?php echo (!empty($new_password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $new_password; ?>">
+                <span class="invalid-feedback"><?php echo $new_password_err; ?></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary" value="Submit">
+                <input type="reset" class="btn btn-secondary ml-2" value="Reset">
+            </div>
+		<p class="hint-text"><br><b>Welcome </b><?php echo $_SESSION["username"] ?></p>
         <div class="text-center">Want to Leave the Page? <br><a href="logout.php">Logout</a></div>
     </form>
 	

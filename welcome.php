@@ -32,7 +32,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
             <?php
 				session_start();
-				include 'database.php';
 				$ID= $_SESSION["ID"];
 				$username = $_SESSION["username"];
             ?>
