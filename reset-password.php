@@ -18,17 +18,17 @@ if (isset($_POST['update'])) {
         $detailsArray = [
             'id' => $id,
             'username' => $usename,
-            'password' => $password,
+            'password' => $new_password,
         ];
 
         //Make sure data exist in our data base
         $check = array_filter($data, function ($array) {
-            return $array['id'] == $_POST['id'];
+            return $array['id'] == $_SESSION['id'];
         });
 
             //getting all other data asides data to be updated
         $NewArray = array_filter($data, function ($array) {
-            return $array['id'] != $_POST['id'];
+            return $array['id'] != $_SESSION['id'];
         });
 
 //            if it exists?
@@ -77,7 +77,7 @@ if (isset($_POST['update'])) {
 
             <?php
 				session_start();
-                $ID= $_SESSION["ID"];
+                $ID= $_SESSION["id"];
 				$username = $_SESSION["username"];
             ?>
         <div class="form-group">

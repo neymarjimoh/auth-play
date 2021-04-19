@@ -51,9 +51,8 @@
 
                     $_SESSION["loggedin"] = true;
                     $_SESSION["username"] = $username;
-                    foreach ($result as $key) 
-                        $_SESSION['id'] = $key['id'];
-                header("Location :welcome.php");
+                    $_SESSION['id'] = $result[0]['id'];
+                header("Location: welcome.php");
             } else{
                 // Password is not valid, display a generic error message
                 $login_err = "Invalid username or password.";

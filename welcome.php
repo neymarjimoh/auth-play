@@ -37,6 +37,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             
 		<p class="hint-text"><br><b>Welcome </b><?php echo $_SESSION["username"] ?></p>
         <div class="text-center">Want to Leave the Page? <br><a href="logout.php">Logout</a></div>
+        <p>Change exixting password? <a href="reset-password.php">Reset Password here</a>.</p>
     </form>
 	
 </div>
